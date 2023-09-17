@@ -91,17 +91,13 @@ function findFirstSiblingWithClass(element, className) {
 }
 
 function createDiceRoll(clickElement, inputElement) {
-    let modifierString = "";
-    if (clickElement.dataset.modifier != "no-mod" && inputElement != null) {
-        modifierString = inputElement.value >= 0 ? "+" + inputElement.value : inputElement.value;
-    }
     let label = "";
     if (clickElement.dataset.label != undefined) {
         label = clickElement.dataset.label;
     } else {
         label = clickElement.textContent;
     }
-    let roll = `${clickElement.dataset.diceType}${modifierString == '+' ? '' : modifierString}`
+    let roll = `${inputElement.value}${clickElement.dataset.diceType}`
 
     //this returns a roll descriptor object. we could be using TS.dice.makeRollDescriptor(`${roll}+${modifierString}`) instead
     //depends mostly on personal preference. using makeRollDescriptor can be safer through updates, but it's also less efficient
